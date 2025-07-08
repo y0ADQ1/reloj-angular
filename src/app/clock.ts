@@ -23,12 +23,27 @@ export class ClockService {
   clocks$ = this.clocksSubject.asObservable();
   editingClock$ = this.editingClockSubject.asObservable();
 
-  addClock(config: Omit<ClockConfig, 'id'>): void {
-    const newClock: ClockConfig = {
+    addClock(config: {
+        handColor: any;
+        markerColor: any;
+        borderColor: any;
+        analogNumbersColor: any;
+        digitalNumbersColor: any;
+        startTime: Date
+    }): void {
+    const newClock: {
+      handColor: any;
+      markerColor: any;
+      borderColor: any;
+      analogNumbersColor: any;
+      digitalNumbersColor: any;
+      startTime: Date;
+      id: string
+    } = {
       ...config,
       id: this.generateId()
     };
-    this.clocks.push(newClock);
+    this.clocks.push(<ClockConfig>newClock);
     this.clocksSubject.next([...this.clocks]);
   }
 

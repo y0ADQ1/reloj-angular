@@ -29,7 +29,6 @@ export class ClockDisplayComponent implements OnInit, OnDestroy {
       this.clocks = clocks;
     });
 
-    // Update time every second
     this.subscription = interval(1000).subscribe(() => {
       this.clocks.forEach(clock => {
         clock.startTime = new Date(clock.startTime.getTime() + 1000);
@@ -100,11 +99,6 @@ export class ClockDisplayComponent implements OnInit, OnDestroy {
 
   decrementMinutes(clock: ClockConfig) {
     const newTime = new Date(clock.startTime.getTime() - 60000);
-    this.clockService.updateClock(clock.id, { startTime: newTime });
-  }
-
-  resetToCurrentTime(clock: ClockConfig) {
-    const newTime = new Date();
     this.clockService.updateClock(clock.id, { startTime: newTime });
   }
 }

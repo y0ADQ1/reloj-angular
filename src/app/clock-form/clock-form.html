@@ -1,5 +1,5 @@
 <div class="form-container">
-  <h2>{{ isEditing ? 'Edit Clock' : 'Add a New Clock' }}</h2>
+  <h2>Add a New Clock</h2>
   <form [formGroup]="clockForm" (ngSubmit)="onSubmit()">
     <div class="form-row">
       <mat-form-field appearance="outline">
@@ -30,14 +30,9 @@
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Start Time</mat-label>
-        <input matInput type="time" formControlName="startTime">
+        <input matInput type="time" step="1" formControlName="startTime">
       </mat-form-field>
     </div>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Background Image URL</mat-label>
-      <input matInput type="url" formControlName="backgroundImage" placeholder="https://example.com/image.jpg">
-    </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Predefined Clock Style</mat-label>
@@ -51,10 +46,7 @@
 
     <div class="button-group">
       <button mat-raised-button color="primary" type="submit" [disabled]="clockForm.invalid">
-        {{ isEditing ? 'Update Clock' : 'Add Clock' }}
-      </button>
-      <button mat-stroked-button type="button" (click)="cancelEdit()" *ngIf="isEditing">
-        Cancel
+        Add Clock
       </button>
     </div>
   </form>
