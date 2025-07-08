@@ -1,12 +1,32 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ClockFormComponent } from './clock-form/clock-form';
+import { ClockDisplayComponent } from './clock-display/clock-display';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ClockFormComponent,
+    ClockDisplayComponent,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule
+  ]
 })
 export class App {
-  protected title = 'relojV1';
+  title = 'Analog Clock Manager';
+  showForm = true;
+
+  toggleForm() {
+    this.showForm = !this.showForm;
+  }
 }

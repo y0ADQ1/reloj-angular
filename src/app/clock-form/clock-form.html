@@ -1,0 +1,61 @@
+<div class="form-container">
+  <h2>{{ isEditing ? 'Edit Clock' : 'Add a New Clock' }}</h2>
+  <form [formGroup]="clockForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Hand Color</mat-label>
+        <input matInput type="color" formControlName="handColor">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Marker Color</mat-label>
+        <input matInput type="color" formControlName="markerColor">
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Border Color</mat-label>
+        <input matInput type="color" formControlName="borderColor">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Analog Numbers Color</mat-label>
+        <input matInput type="color" formControlName="analogNumbersColor">
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Digital Numbers Color</mat-label>
+        <input matInput type="color" formControlName="digitalNumbersColor">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Start Time</mat-label>
+        <input matInput type="time" formControlName="startTime">
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Background Image URL</mat-label>
+      <input matInput type="url" formControlName="backgroundImage" placeholder="https://example.com/image.jpg">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Predefined Clock Style</mat-label>
+      <mat-select formControlName="predefined" (selectionChange)="applyPredefined($event.value)">
+        <mat-option value="">None</mat-option>
+        <mat-option value="classic">Classic</mat-option>
+        <mat-option value="modern">Modern</mat-option>
+        <mat-option value="vintage">Vintage</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="button-group">
+      <button mat-raised-button color="primary" type="submit" [disabled]="clockForm.invalid">
+        {{ isEditing ? 'Update Clock' : 'Add Clock' }}
+      </button>
+      <button mat-stroked-button type="button" (click)="cancelEdit()" *ngIf="isEditing">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
